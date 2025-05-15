@@ -3,7 +3,7 @@
     "build": {
       "dockerfile": "Dockerfile"
     },
-    "postCreateCommand": "bash /setup.sh",
+    "postCreateCommand": "/setup.sh",
     "containerEnv": {
       "DISPLAY": "docker.for.mac.host.internal:0"
   },
