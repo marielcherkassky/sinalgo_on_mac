@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-cd "$(dirname "$0")/.."
-
 # Only run if ./sinalgo does not already exist
 if [ ! -d "sinalgo" ]; then
   echo "📥 Downloading Sinalgo..."
@@ -14,9 +12,8 @@ if [ ! -d "sinalgo" ]; then
   echo "📂 Extracting into ./sinalgo..."
   unzip sinalgo.zip -d sinalgo
 
-  echo "🧹 Cleaning up..."
   rm sinalgo.zip
-
+  
   echo "java -cp "binaries/bin:binaries/jdom.jar" sinalgo.Run" > ./sinalgo/run.sh
   chmod +x ./sinalgo/run.sh
 
