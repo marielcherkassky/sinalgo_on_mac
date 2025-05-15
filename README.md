@@ -15,7 +15,7 @@ This guide explains how to set up your environment to run [Sinalgo](https://disc
 ## Setup Instructions
 
 1. **Install XQuartz**  
-   If you don’t already have a display server, install [XQuartz](https://www.xquartz.org/).
+   If you don't already have a display server, install [XQuartz](https://www.xquartz.org/).
 
 2. **Enable Network Access in XQuartz**  
    - Open XQuartz
@@ -66,7 +66,60 @@ This guide explains how to set up your environment to run [Sinalgo](https://disc
    ./run.sh
    ```
 
-   > This should launch the Sinalgo application on your host.
+   > This will launch the Sinalgo application with the project selector GUI by default.
+
+---
+
+## Sinalgo Runner Script Usage
+
+The `run.sh` script provides a convenient way to launch Sinalgo in both GUI and batch modes, with various options.
+
+**Usage:**
+```bash
+./run.sh [OPTIONS]
+```
+
+**Common Flags:**
+- `-help`                   Show help message
+- `-gui`                    Start in GUI mode (default)
+- `-batch`                  Start in batch mode (no GUI)
+- `-project <name>`         Load project by name
+- `-rounds <n>`             Run for <n> rounds after startup
+- `-refreshRate <n>`        Refresh GUI every <n> rounds
+- `-gen '<args>'`           Generate nodes with type, distribution, and models
+- `-overwrite '<k=v>'`      Override config parameters (quoted)
+
+**Examples:**
+
+- Launch project selector (default when no args):
+  ```bash
+  ./run.sh
+  ```
+
+- Run sample1 project with 1000 nodes of type S1Node:
+  ```bash
+  ./run.sh -project sample1 -gen "1000 sample1:S1Node Random" -rounds 10 -refreshRate 2
+  ```
+
+- Run sample2 with specific connectivity and mobility models:
+  ```bash
+  ./run.sh -project sample2 -gen "10000 sample2:S2Node Random C=QUDG M=sample2:LakeAvoid"
+  ```
+
+- Enable mobility, disable interference, set rMax to 50:
+  ```bash
+  ./run.sh -project sample1 -overwrite "mobility=true interference=false GeometricNodeCollection/rMax=50"
+  ```
+
+- Generate multiple node groups:
+  ```bash
+  ./run.sh -project sample1 -gen "100 sample1:S1Node Random UDG" -gen "50 DummyNode Circle QUDG" -gen "10 sample2:S2Node Random"
+  ```
+
+- Batch mode (no windows):
+  ```bash
+  ./run.sh -batch -project sample1 -rounds 1000
+  ```
 
 ---
 

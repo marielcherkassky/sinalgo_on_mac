@@ -13,9 +13,9 @@ if [ ! -d "sinalgo" ]; then
   unzip sinalgo.zip -d sinalgo
 
   rm sinalgo.zip
-  
-  echo "java -cp "binaries/bin:binaries/jdom.jar" sinalgo.Run" > ./sinalgo/run.sh
-  chmod +x ./sinalgo/run.sh
+  cp .devcontainer/run_sinalgo.sh sinalgo/run.sh
+  chmod +x sinalgo/run.sh
+
 
   echo "✅ Sinalgo is ready in ./sinalgo"
 else
