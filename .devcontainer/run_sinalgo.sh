@@ -85,4 +85,7 @@ if [ $# -eq 0 ]; then
   esac
 fi
 
-
+echo "Launching Sinalgo with project selector GUI..."
+      # Build and run full command
+CMD="java $JAVA_OPTS -cp $BIN_DIR:$JDOM_JAR $MAIN_CLASS $@"
+echo "Running: $CMD"
